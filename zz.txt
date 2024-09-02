@@ -1,0 +1,8 @@
+we have 2 approaches:
+    1) In the index.js file, connecting database and starting app
+    2) Modular way, inside the db folder and index.js
+
+Topics
+1) using async await
+2) using IFFEE
+3) try and catch
