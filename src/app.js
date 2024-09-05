@@ -15,19 +15,14 @@ app.use(express.json({limit: "16kb"}))
 app.use(express.urlencoded({extended: true, limit: "16kb"}))
 
 app.use(express.static("public"))
-app.use(cookieParser);
+// app.use(cookieParser);
 
 
 // routes
-// import userRouter from './routes/user.routes.js'
+import userRouter from './routes/user.routes.js'
 
 // // routes declaration
-// try {
-//     console.log("/api/v1/user NO ERROR FOUND 1")
-//     app.use("/api/v1/users", userRouter)
-//     console.log("/api/v1/user NO ERROR FOUND 2")
-// } catch (error) {
-//     console.log("/api/v1/user ERROR FOUND", error)
-// }
+    app.use("/api/v1/users", userRouter)
+
 
 export default app;

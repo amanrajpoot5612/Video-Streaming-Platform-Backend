@@ -4,7 +4,7 @@ import app from './app.js';
 import mongoose from "mongoose";
 import { DB_NAME } from "./constants.js";
 import connectDb from "./db/index.js";
-// import app from './app.js';
+
 const port = process.env.PORT || 8000;
 connectDb()
 .then( () => {
@@ -15,10 +15,6 @@ connectDb()
 .catch((err) =>{
     console.log(`MongoDb connection failed ${err}`);
 })
-
-app.get("/", (req, res) => {
-    res.send("Server is ready");
-});
 
 
 // const app = express();
