@@ -1,13 +1,12 @@
 import asyncHandler from "../utils/asyncHandler.js"
 import apiError from "../utils/apiError.js"
-import User from "../models/user.model.js"
+import { User } from "../models/user.model.js"
 import uploadOnCloudinary from "../utils/cloudinary.js"
 import { apiResponse } from "../utils/apiResponse.js"
 const registerUser = asyncHandler( async (req, res) =>{
     // res.status(200).send("Done")
     const {fullName, username, email, password} = req.body
     console.log(fullName + " " +   email + " " + password + " " + username );
-})
 
     if(
         [fullName, email, username, password].some((field) =>
@@ -54,9 +53,12 @@ const registerUser = asyncHandler( async (req, res) =>{
         "-password -refreshToken"
     )
 
-    return res.status(201).json(
+    return res.status((201).json(
         new apiResponse(200, createdUser, "User registered successfully")
-    )
+    ))
 
+})
+
+   
 
 export default registerUser;
