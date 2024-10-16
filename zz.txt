@@ -7,4 +7,12 @@ Topics
 2) using IFFEE
 3) try and catch
 
+verifyJWT is used as middleware for every request to add access to user
 
+change current user avatar and cover image in separate ccontroller
+
+aggregation, reduce, some
+
+const changeCurrentPassword = asyncHandler( async (req, res) => {
+    
+})
