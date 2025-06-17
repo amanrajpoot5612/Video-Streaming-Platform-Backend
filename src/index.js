@@ -6,6 +6,8 @@ import { DB_NAME } from "./constants.js";
 import connectDb from "./db/index.js";
 
 const port = process.env.PORT || 8000;
+console.log("Loaded URI:", process.env.MONGODB_URI);
+
 connectDb()
 .then( () => {
     app.listen(port, () =>{
