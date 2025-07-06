@@ -4,6 +4,8 @@ import { upload } from "../middleware/multer.middleware.js"
 import { verifyJWT } from "../middleware/auth.middleware.js";
 
 const router = Router();
+console.log("user router");
+
 router.route("/register").post( upload.fields([
     {
         name: "avatar",

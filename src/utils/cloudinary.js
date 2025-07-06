@@ -25,7 +25,9 @@ import fs from 'fs'
             // console.log("file is uploaded on cloudinary", response.url);
             return response;
         } catch (error) {
-            fs.unlinkSync(localFilePath)    // remove the file from server
+            if (fs.existsSync(localFilePath)) {
+                fs.unlinkSync(localFilePath);
+                }  // remove the file from server
             return null;
         }
     }
