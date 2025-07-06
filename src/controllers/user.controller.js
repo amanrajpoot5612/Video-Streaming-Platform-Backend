@@ -3,14 +3,15 @@ import apiError from "../utils/apiError.js"
 import { User } from "../models/user.model.js"
 import uploadOnCloudinary from "../utils/cloudinary.js"
 import { apiResponse } from "../utils/apiResponse.js"
-import jwt from "json-web-token"
+import jwt from "jsonwebtoken"
 
 const generateAccessAndRefreshToken = async(userId) => {
     try {
         const user = await User.findById(userId)
         const accessToken = user.generateAccessToken()
         const refreshToken = user.generateRefreshToken()
-
+        console.log("token generated in gaft");
+        
         user.refreshToken = refreshToken
         await user.save({ validateBeforeSave: false })
 
@@ -103,9 +104,12 @@ const loginUser = asyncHandler( async (req, res) => {
     if(!isPasswordValid){
         throw new apiError(401, "Password incorrect")
     }
-
+    console.log("password validated");
+    
     const {accessToken, refreshToken}  = await generateAccessAndRefreshToken(user._id)
-
+    
+    console.log("tokens generated");
+    
     const loggedInUser = await User.findById(user._id).select("-password -refreshToken")
 
     const options = {
