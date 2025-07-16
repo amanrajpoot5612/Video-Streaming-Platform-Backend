@@ -7,12 +7,13 @@ import asyncHandler from "../utils/asyncHandler.js";
 
 const uploadVideo = asyncHandler(async (req , res) => {
     const {title, description, duration} = req.body;
-
+    console.log("video uploaded started");
+    
     const videoFile = req.files?.videoFile?.[0]?.path;
     const thumbnail = req.files?.thumbnail?.[0]?.path;
 
     //validation
-    if(!title || !description || !duration || !videoFile || !thumbnail){
+    if(!title || !description || !videoFile || !thumbnail){
         throw new apiError(400 , "All fields are required", [
             "title",
             "description",
