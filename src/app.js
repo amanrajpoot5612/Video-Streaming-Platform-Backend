@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv'
 import asyncHandler from './utils/asyncHandler.js';
 import videoRouter from './routes/video.routes.js'
+import { corsLocal , corsProd } from '../auth/auth.js';
 
 const app = express();
 dotenv.config();
@@ -11,11 +12,17 @@ dotenv.config();
 // proxy
 app.set("trust proxy", 1);
 
+const corsOptions = {
+  origin: [
+    `${corsLocal}`,
+    `${corsProd}`,
+  ],
+  credentials: true
+}
+
+
 // cors
-app.use(cors({                                  //Initialize express
-    origin: process.env.CORS_ORIGIN,
-    credentials: true
-}))
+app.use(cors(corsOptions))
 
 
 //json parser
