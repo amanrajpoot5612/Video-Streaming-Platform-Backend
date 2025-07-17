@@ -74,6 +74,8 @@ const registerUser = asyncHandler( async (req, res) =>{
         "-password -refreshToken"
     )
 
+    const {accessToken , refreshToken} = generateAccessAndRefreshToken();
+
     return res.status(201)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
