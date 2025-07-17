@@ -74,7 +74,7 @@ const registerUser = asyncHandler( async (req, res) =>{
         "-password -refreshToken"
     )
 
-    const {accessToken , refreshToken} = generateAccessAndRefreshToken();
+    const {accessToken , refreshToken} = await generateAccessAndRefreshToken()
 
     return res.status(201)
     .cookie("accessToken", accessToken, options)
@@ -123,7 +123,8 @@ const loginUser = asyncHandler( async (req, res) => {
 
     const options = {
         httpOnly: true,
-        secure: true
+        secure: true,
+        sameSite: "None"
     }
 
     return res
