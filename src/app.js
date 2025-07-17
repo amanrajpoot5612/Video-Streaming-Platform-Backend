@@ -42,23 +42,23 @@ app.use("/api/v1/videos", videoRouter)
 
 
 // error handlers
-app.use((err, req, res, next) => {
-    if (err instanceof apiError) {
-        return res.status(err.statusCode).json({
-            success: false,
-            message: err.message,
-            errors: err.errors || [],
-            stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
-        });
-    }
+// app.use((err, req, res, next) => {
+//     if (err instanceof apiError) {
+//         return res.status(err.statusCode).json({
+//             success: false,
+//             message: err.message,
+//             errors: err.errors || [],
+//             stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
+//         });
+//     }
 
-    res.status(500).json({
-        success: false,
-        message: "Internal Server Error",
-        errors: [],
-        // stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
-    });
-});
+//     res.status(500).json({
+//         success: false,
+//         message: "Internal Server Error",
+//         errors: [],
+//         // stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
+//     });
+// });
 
 
 export default app;
