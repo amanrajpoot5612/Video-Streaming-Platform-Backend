@@ -74,7 +74,10 @@ const registerUser = asyncHandler( async (req, res) =>{
         "-password -refreshToken"
     )
 
-    return res.status(201).json(
+    return res.status(201)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json(
         new apiResponse(200, createdUser, "User registered successfully")
     )
 
