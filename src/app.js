@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import asyncHandler from './utils/asyncHandler.js';
 import videoRouter from './routes/video.routes.js'
 import { corsLocal , corsProd } from '../auth/auth.js';
+import apiError from './utils/apiError.js';
 
 const app = express();
 dotenv.config();
@@ -49,23 +50,24 @@ app.use("/api/v1/videos", videoRouter)
 
 
 // error handlers
-// app.use((err, req, res, next) => {
-//     if (err instanceof apiError) {
-//         return res.status(err.statusCode).json({
-//             success: false,
-//             message: err.message,
-//             errors: err.errors || [],
-//             stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
-//         });
-//     }
+app.use((err, req, res, next) => {
+      console.error("🔥 ERROR MIDDLEWARE", err); // Add this line to debu
+    if (err instanceof apiError) {
+        return res.status(err.statusCode).json({
+            success: false,
+            message: err.message,
+            errors: err.errors || [],
+            stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
+        });
+    }
 
-//     res.status(500).json({
-//         success: false,
-//         message: "Internal Server Error",
-//         errors: [],
-//         // stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
-//     });
-// });
+    res.status(500).json({
+        success: false,
+        message: "Internal Server Error",
+        errors: [],
+        // stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
+    });
+});
 
 
 export default app;
