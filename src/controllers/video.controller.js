@@ -51,4 +51,15 @@ const uploadVideo = asyncHandler(async (req , res) => {
         .json(new apiResponse(201 , newVideo , "Video uploaded successfully"))
 })
 
-export {uploadVideo};
+const getAllVideo = asyncHandler(async (req, res) => {
+    const videos = await Video.find()
+    console.log(`All videos: ${videos}`);
+    
+    return res.status(200).
+    json(videos, "All Videos fetched successfully", 200)
+})
+
+export {
+    uploadVideo,
+    getAllVideo
+};
