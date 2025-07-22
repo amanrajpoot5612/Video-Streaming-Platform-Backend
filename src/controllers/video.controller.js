@@ -52,14 +52,27 @@ const uploadVideo = asyncHandler(async (req , res) => {
 })
 
 const getAllVideo = asyncHandler(async (req, res) => {
-    const videos = await Video.find()
+    const videos = await Video.find().populate("owner" , "username fullName avatar")
     console.log(`All videos: ${videos}`);
     
     return res.status(200).
     json(videos, "All Videos fetched successfully", 200)
 })
 
+const watchVideo = asyncHandler( async (req , res) => {
+    
+    const video = await Video.findById(req.params.id).populate("owner", "username fullName avatar")
+
+    if(!video){
+        throw new apiError(401 , "Can't find video")
+    }
+
+    return res.status(200)
+    .json(new apiResponse(200, video , "Video Fetched"));
+})
+
 export {
     uploadVideo,
-    getAllVideo
+    getAllVideo,
+    watchVideo
 };
