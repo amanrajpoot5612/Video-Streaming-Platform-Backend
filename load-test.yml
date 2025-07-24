@@ -1,0 +1,9 @@
+config:
+  target: "https://amanrajpoot-bugsy.vercel.app/"
+  phases:
+    - duration: 30
+      arrivalRate: 100 # 100 users per second
+scenarios:
+  - flow:
+      - get:
+          url: "/api/videos/feed"
