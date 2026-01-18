@@ -5,7 +5,9 @@ dotenv.config();
 const port = process.env.PORT;
 const mongodbURL = process.env.MONGODB_URI;
 const corsLocal = process.env.CORS_ORIGIN_LOCAL;
-const corsProd = process.env.CORS_ORIGIN_PROD;
+const corsProd1 = process.env.CORS_ORIGIN_PROD;
+const corsProd2 = process.env.CORS_ORIGIN_PROD_2;
+const corsProd3 = process.env.CORS_ORIGIN_PROD_3;
 const accessToken = process.env.ACCESS_TOKEN_SECRET; 
 const accessExpiry = process.env.ACCESS_TOKEN_EXPIRY;
 const refreshToken = process.env.REFRESH_TOKEN_SECRET; 
@@ -19,7 +21,9 @@ export {
     port,
     mongodbURL,
     corsLocal,
-    corsProd,
+    corsProd1,
+    corsProd2,
+    corsProd3,
     accessToken,
     accessExpiry,
     refreshToken,
