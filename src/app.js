@@ -13,19 +13,26 @@ dotenv.config();
 // proxy
 app.set("trust proxy", 1);
 
-const corsOptions = {
-  origin: [
-    // `${corsLocal}`,
-    `${corsProd1}`,
-    `${corsProd2}`,
-    `${corsProd3}`,
-  ],
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true); // allow server-to-server
+
+    const allowedOrigins = [
+      corsProd1,
+      corsProd2,
+      corsProd3,
+      corsLocal
+    ];
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Not allowed by CORS"));
+  },
   credentials: true
-}
+}));
 
-
-// cors
-app.use(cors(corsOptions))
 
 
 //json parser
