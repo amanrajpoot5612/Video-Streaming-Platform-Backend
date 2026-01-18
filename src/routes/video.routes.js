@@ -6,6 +6,10 @@ import {verifyJWT} from '../middleware/auth.middleware.js'
 
 const router = Router();
 
+router.route('/get-all').get(getAllVideo)
+
+router.route('/watch/:id').get(watchVideo)
+
 router.route('/upload').post(
     verifyJWT,
     upload.fields([
@@ -18,9 +22,5 @@ router.route('/upload').post(
         maxCount: 1
     }
 ]) , uploadVideo)
-
-router.route('/get-all').get(getAllVideo)
-
-router.route('/watch/:id').get(watchVideo)
 
 export default router;

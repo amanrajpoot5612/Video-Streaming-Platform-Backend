@@ -50,8 +50,8 @@ app.use(cookieParser());
 import userRouter from './routes/user.routes.js'
 
 // // routes declaration
-app.use("/api/v1/users", userRouter)
 app.use("/api/v1/videos", videoRouter)
+app.use("/api/v1/users", userRouter)
 app.get('/loaderio-ed392aaaf49b37a5018b548ffa655995.txt', (req, res) => {
   res.send('loaderio-ed392aaaf49b37a5018b548ffa655995');
 });

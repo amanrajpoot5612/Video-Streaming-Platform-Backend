@@ -5,6 +5,25 @@ import asyncHandler from "../utils/asyncHandler.js";
 import uploadOnCloudinary from "../utils/cloudinary.js";
 
 
+const getAllVideo = asyncHandler(async (req, res) => {
+    const videos = await Video.find().populate("owner" , "username fullName avatar")
+    console.log(`All videos: ${videos}`);
+    
+    return res.status(200).
+    json(videos, "All Videos fetched successfully", 200)
+})
+
+const watchVideo = asyncHandler( async (req , res) => {
+    
+    const video = await Video.findById(req.params.id).populate("owner", "username fullName avatar")
+
+    if(!video){
+        throw new apiError(401 , "Can't find video")
+    }
+
+    return res.status(200)
+    .json(new apiResponse(200, video , "Video Fetched"));
+})
 
 const uploadVideo = asyncHandler(async (req , res) => {
     const {title, description, duration} = req.body;
@@ -49,26 +68,6 @@ const uploadVideo = asyncHandler(async (req , res) => {
     return res
         .status(201)
         .json(new apiResponse(201 , newVideo , "Video uploaded successfully"))
-})
-
-const getAllVideo = asyncHandler(async (req, res) => {
-    const videos = await Video.find().populate("owner" , "username fullName avatar")
-    console.log(`All videos: ${videos}`);
-    
-    return res.status(200).
-    json(videos, "All Videos fetched successfully", 200)
-})
-
-const watchVideo = asyncHandler( async (req , res) => {
-    
-    const video = await Video.findById(req.params.id).populate("owner", "username fullName avatar")
-
-    if(!video){
-        throw new apiError(401 , "Can't find video")
-    }
-
-    return res.status(200)
-    .json(new apiResponse(200, video , "Video Fetched"));
 })
 
 export {
