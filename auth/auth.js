@@ -5,7 +5,7 @@ dotenv.config();
 const port = process.env.PORT;
 const mongodbURL = process.env.MONGODB_URI;
 const corsLocal = process.env.CORS_ORIGIN_LOCAL;
-const corsProd1 = process.env.CORS_ORIGIN_PROD;
+const corsProd1 = process.env.CORS_ORIGIN_PROD_1;
 const corsProd2 = process.env.CORS_ORIGIN_PROD_2;
 const corsProd3 = process.env.CORS_ORIGIN_PROD_3;
 const accessToken = process.env.ACCESS_TOKEN_SECRET; 
